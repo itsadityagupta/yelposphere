@@ -17,7 +17,17 @@ provider "google" {
 module "storage" {
   source = "./modules/storage"
 
+  region = var.region
   datalake_name = var.datalake_name
   storage_class = var.datalake_storage_class
+
+}
+
+module "bigquery" {
+  source = "./modules/bigquery"
+
+  project = var.project
   region = var.region
+  yelp_staging_dataset = var.yelp_staging_dataset
+  business_staging_table = var.business_staging_table
 }

@@ -7,3 +7,7 @@ credentials = "dezoomcamp-capstone-project-key.json"
 # GCS Configurations
 datalake_storage_class = "STANDARD"
 datalake_name = "dezoomcamp2023_capstone_project_datalake"
+
+# BigQuery Configuration
+yelp_staging_dataset = "staging"
+business_staging_table = "stg_businesses"
