@@ -21,6 +21,9 @@ module "storage" {
   datalake_name = var.datalake_name
   storage_class = var.datalake_storage_class
 
+  dataproc_staging_bucket_name = var.dataproc_staging_bucket_name
+  dataproc_temp_bucket_name = var.dataproc_temp_bucket_name
+
 }
 
 module "bigquery" {
@@ -30,4 +33,14 @@ module "bigquery" {
   region = var.region
   yelp_staging_dataset = var.yelp_staging_dataset
   business_staging_table = var.business_staging_table
+}
+
+module "dataproc" {
+  source = "./modules/dataproc"
+
+  region = var.region
+  dataproc_staging_bucket_name = var.dataproc_staging_bucket_name
+  dataproc_temp_bucket_name = var.dataproc_temp_bucket_name
+
+  depends_on = [module.storage]
 }
