@@ -23,6 +23,14 @@ variable "datalake_storage_class" {
   type = string
 }
 
+variable "dataproc_staging_bucket_name" {
+  type = string
+}
+
+variable "dataproc_temp_bucket_name" {
+  type = string
+}
+
 variable "yelp_staging_dataset" {
   description = "Dataset id to store raw tables."
   type = string
