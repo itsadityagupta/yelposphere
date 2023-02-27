@@ -9,3 +9,7 @@ output "yelp_staging_dataset" {
 output "staging_business_table" {
   value = module.bigquery.staging_business_table
 }
+
+output "airflow_dags_folder_path" {
+  value = module.cloud_composer.airflow_dags_folder_path
+}
