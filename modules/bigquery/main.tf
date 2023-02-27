@@ -1,82 +1,19 @@
-resource "google_bigquery_dataset" "yelp_staging" {
-  dataset_id = var.yelp_staging_dataset
-  project = var.project
-  location = var.region
-  description = "Stores staging tables for yelp."
+resource "google_bigquery_dataset" "staging_dataset" {
+  dataset_id = var.bigquery_staging_dataset_name
+  project = var.project_id
+  location = var.bigquery_staging_dataset_region
+  description = var.bigquery_staging_dataset_description
 
-  delete_contents_on_destroy = true
+  delete_contents_on_destroy = var.bigquery_staging_dataset_delete_contents_on_destroy
 }
 
-resource "google_bigquery_table" "stg_businesses" {
-  dataset_id = google_bigquery_dataset.yelp_staging.dataset_id
-  table_id   = var.business_staging_table
-  description = "Staging businesses table"
-  deletion_protection = false
+resource "google_bigquery_table" "business_staging_business_table" {
+  dataset_id = google_bigquery_dataset.staging_dataset.dataset_id
+  table_id   = var.bigquery_staging_business_table_name
+  description = var.bigquery_staging_business_table_description
+  deletion_protection = var.bigquery_staging_business_table_deletion_protection
 
-  schema = <<EOF
-[
-  {
-    "name": "business_id",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "name",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "address",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "city",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "state",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "postal_code",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "latitude",
-    "type": "FLOAT",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "longitude",
-    "type": "FLOAT",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "stars",
-    "type": "FLOAT",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "review_count",
-    "type": "INTEGER",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "is_open",
-    "type": "INTEGER",
-    "mode": "NULLABLE"
-  },
-  {
-    "name": "categories",
-    "type": "STRING",
-    "mode": "NULLABLE"
-  }
-]
-EOF
+  schema = local.bigquery_staging_business_table_schema
 
   range_partitioning {
     field = "is_open"
@@ -87,5 +24,5 @@ EOF
     }
   }
 
-  depends_on = [google_bigquery_dataset.yelp_staging]
+  depends_on = [google_bigquery_dataset.staging_dataset]
 }

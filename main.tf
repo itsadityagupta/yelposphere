@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "google" {
-  project = var.project
+  project = var.project_id
   region = var.region
   // credentials = file(var.credentials)  # Use this if you do not want to set env-var GOOGLE_APPLICATION_CREDENTIALS
 }
@@ -29,10 +29,19 @@ module "storage" {
 module "bigquery" {
   source = "./modules/bigquery"
 
-  project = var.project
-  region = var.region
-  yelp_staging_dataset = var.yelp_staging_dataset
-  business_staging_table = var.business_staging_table
+  project_id = var.project_id
+
+  // staging dataset config
+  bigquery_staging_dataset_name = var.bigquery_staging_dataset_name
+  bigquery_staging_dataset_description = var.bigquery_staging_dataset_description
+  bigquery_staging_dataset_region = var.bigquery_staging_dataset_region
+  bigquery_staging_dataset_delete_contents_on_destroy = var.bigquery_staging_dataset_delete_contents_on_destroy
+
+  // business staging table config
+  bigquery_staging_business_table_name = var.bigquery_staging_business_table_name
+  bigquery_staging_business_table_description = var.bigquery_staging_business_table_description
+  bigquery_staging_business_table_deletion_protection = var.bigquery_staging_business_table_deletion_protection
+  bigquery_staging_business_table_schema_filepath = var.bigquery_staging_business_table_schema_filepath
 }
 
 module "dataproc" {
@@ -45,7 +54,7 @@ module "dataproc" {
   depends_on = [module.storage]
 }
 
-module "cloud_composer" {
+module "composer" {
   source = "./modules/composer"
 
   // environment config
