@@ -13,8 +13,15 @@ variable "credentials" {
   type = string
 }
 
+// GCS Configurations
+
 variable "datalake_name" {
   description = "Name of the GCS bucket used as a data lake for this project."
+  type = string
+}
+
+variable "datalake_region" {
+  description = "Region for the data lake."
   type = string
 }
 
@@ -23,11 +30,130 @@ variable "datalake_storage_class" {
   type = string
 }
 
+variable "datalake_uniform_bucket_level_access" {
+  description = "Enable uniform bucket level access in data lake."
+  type = bool
+}
+
+variable "datalake_public_access_prevention" {
+  description = "Public access prevention for the datalake."
+  type = string
+}
+
+variable "datalake_lifecycle_rule_action" {
+  description = "Action for life cycle rule in data lake."
+  type = string
+}
+
+variable "datalake_lifecycle_rule_condition_age_days" {
+  description = "Age in days for life cycle rule in data lake."
+  type = number
+}
+
+variable "datalake_force_destroy" {
+  description = "Enable force destroy for data lake."
+  type = bool
+}
+
+// Dataproc Configurations
+
 variable "dataproc_staging_bucket_name" {
   type = string
 }
 
+variable "dataproc_staging_bucket_region" {
+  type = string
+}
+
+variable "dataproc_staging_bucket_storage_class" {
+  type = string
+}
+
+variable "dataproc_staging_bucket_uniform_bucket_level_access" {
+  type = bool
+}
+
+variable "dataproc_staging_bucket_public_access_prevention" {
+  type = string
+}
+
+variable "dataproc_staging_bucket_lifecycle_rule_action" {
+  type = string
+}
+
+variable "dataproc_staging_bucket_lifecycle_rule_condition_age_days" {
+  type = number
+}
+
+variable "dataproc_staging_bucket_force_destroy" {
+  type = bool
+}
+
 variable "dataproc_temp_bucket_name" {
+  type = string
+}
+
+variable "dataproc_temp_bucket_region" {
+  type = string
+}
+
+variable "dataproc_temp_bucket_storage_class" {
+  type = string
+}
+
+variable "dataproc_temp_bucket_uniform_bucket_level_access" {
+  type = bool
+}
+
+variable "dataproc_temp_bucket_public_access_prevention" {
+  type = string
+}
+
+variable "dataproc_temp_bucket_lifecycle_rule_action" {
+  type = string
+}
+
+variable "dataproc_temp_bucket_lifecycle_rule_condition_age_days" {
+  type = number
+}
+
+variable "dataproc_temp_bucket_force_destroy" {
+  type = bool
+}
+
+variable "dataproc_cluster_name" {
+  type = string
+}
+
+variable "dataproc_cluster_region" {
+  type = string
+}
+
+variable "dataproc_graceful_decommission_timeout" {
+  type = string
+}
+
+variable "dataproc_master_num_instances" {
+  type = number
+}
+
+variable "dataproc_master_machine_type" {
+  type = string
+}
+
+variable "dataproc_master_boot_disk_type" {
+  type = string
+}
+
+variable "dataproc_master_boot_disk_size_gb" {
+  type = number
+}
+
+variable "dataproc_image_version" {
+  type = string
+}
+
+variable "dataproc_allow_zero_workers" {
   type = string
 }
 
