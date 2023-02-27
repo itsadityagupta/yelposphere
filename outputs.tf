@@ -21,3 +21,7 @@ output "staging_business_table" {
 output "dataproc_cluster_name" {
   value = module.dataproc.dataproc_cluster_name
 }
+
+output "airflow_dags_folder_path" {
+  value = module.cloud_composer.airflow_dags_folder_path
+}
