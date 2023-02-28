@@ -19,4 +19,4 @@ All the values for the infrastructure resources can be found in the `terraform.t
 3. Review the resources and enter "yes" to start the creation.
 4. It will take around 45 mins to create all the resources.
 
-_**Note:** Resouces can be destroyed using the command `terraform destroy`_
+_**Note:** Resources can be destroyed using the command `terraform destroy`_ Although cloud composer creates a GCP bucket for dags which is not deleted by this command. So it needs to be deleted manually. (Please suggest if there's a better way to do it)
