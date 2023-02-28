@@ -12,7 +12,7 @@ variable "compose_image_version" {
   description = "Cloud Composer Image Version."
 }
 
-variable "composer_service-account" {
+variable "composer_service_account_email" {
   type = string
 }
 

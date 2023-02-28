@@ -7,10 +7,10 @@ resource "google_storage_bucket" "dataproc_staging_bucket" {
 
   lifecycle_rule {
     action {
-      type = var.dataproc_staging_bucket_lifecycle_rule_action
+      type                        = var.dataproc_staging_bucket_lifecycle_rule_action
     }
     condition {
-      age = var.dataproc_staging_bucket_lifecycle_rule_condition_age_days
+      age                         = var.dataproc_staging_bucket_lifecycle_rule_condition_age_days
     }
   }
 
@@ -26,10 +26,10 @@ resource "google_storage_bucket" "dataproc_temp_bucket" {
 
   lifecycle_rule {
     action {
-      type = var.dataproc_temp_bucket_lifecycle_rule_action
+      type                        = var.dataproc_temp_bucket_lifecycle_rule_action
     }
     condition {
-      age = var.dataproc_temp_bucket_lifecycle_rule_condition_age_days
+      age                         = var.dataproc_temp_bucket_lifecycle_rule_condition_age_days
     }
   }
 
@@ -57,7 +57,7 @@ resource "google_dataproc_cluster" "dataproc-cluster" {
     }
 
     software_config {
-      image_version = var.dataproc_image_version
+      image_version               = var.dataproc_image_version
       override_properties = {
         "dataproc:dataproc.allow.zero.workers" = var.dataproc_allow_zero_workers
       }

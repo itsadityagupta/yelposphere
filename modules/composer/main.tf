@@ -1,9 +1,3 @@
-#resource "google_service_account_iam_member" "composer_service_account" {
-#  service_account_id = "dezoomcamp-capstone-project@dtc-de-zoomcamp-2023.iam.gserviceaccount.com"
-#  role = "roles/composer.ServiceAgentV2Ext"
-#  member = "serviceAccount:service-168078315494@cloudcomposer-accounts.iam.gserviceaccount.com"
-#}
-
 resource "google_composer_environment" "orchestrator" {
   name = var.composer_env_name
   region = var.composer_region
@@ -20,7 +14,7 @@ resource "google_composer_environment" "orchestrator" {
     }
 
     node_config {
-      service_account = var.composer_service-account
+      service_account = var.composer_service_account_email
     }
 
     workloads_config {
@@ -44,6 +38,6 @@ resource "google_composer_environment" "orchestrator" {
       }
     }
 
-    environment_size = "ENVIRONMENT_SIZE_SMALL" // TODO: Make it medium
+    environment_size = var.composer_environment_size //"ENVIRONMENT_SIZE_SMALL" // TODO: Make it medium
   }
 }

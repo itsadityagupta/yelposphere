@@ -201,6 +201,8 @@ variable "bigquery_staging_business_table_schema_filepath" {
   type = string
 }
 
+// Composer environment name
+
 variable "composer_env_name" {
   description = "Cloud Composer environment name"
   type = string
@@ -215,7 +217,7 @@ variable "compose_image_version" {
   description = "Cloud Composer Image Version."
 }
 
-variable "composer_service-account" {
+variable "composer_service_account_email" {
   type = string
 }
 
