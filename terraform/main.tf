@@ -109,3 +109,7 @@ module "composer" {
   worker_min_count                                                           = var.worker_min_count
   worker_max_count                                                           = var.worker_max_count
 }
+
+module "apis" {
+  source = "./modules/apis"
+}
