@@ -1,13 +1,13 @@
 resource "google_composer_environment" "orchestrator" {
-  name = var.composer_env_name
+  name   = var.composer_env_name
   region = var.composer_region
 
   config {
     software_config {
       image_version = var.compose_image_version
-#      pypi_packages = {
-#        dbt-bigquery = ""
-#      }
+      #      pypi_packages = {
+      #        dbt-bigquery = ""
+      #      }
       env_variables = {
         FOO = "bar" // TODO: Add if required
       }

@@ -1,0 +1,1 @@
+[{"name": "business_id", "type": "STRING", "mode": "NULLABLE"}, {"name": "user_id", "type": "STRING", "mode": "NULLABLE"}, {"name": "date", "type": "TIMESTAMP", "mode": "NULLABLE"}, {"name": "text", "type": "STRING", "mode": "NULLABLE"}, {"name": "compliment_count", "type": "INTEGER", "mode": "NULLABLE"}]

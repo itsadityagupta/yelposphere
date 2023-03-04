@@ -1,58 +1,58 @@
 variable "project_id" {
   description = "Your GCP Project ID."
-  type = string
+  type        = string
 }
 
 variable "region" {
   description = "Region for GCP resources."
-  type = string
+  type        = string
 }
 
 variable "credentials" {
   description = "Path to the key file for service account."
-  type = string
+  type        = string
 }
 
 // GCS Configurations
 
 variable "datalake_name" {
   description = "Name of the GCS bucket used as a data lake for this project."
-  type = string
+  type        = string
 }
 
 variable "datalake_region" {
   description = "Region for the data lake."
-  type = string
+  type        = string
 }
 
 variable "datalake_storage_class" {
   description = "Storage class type for your bucket. Check official docs for more info."
-  type = string
+  type        = string
 }
 
 variable "datalake_uniform_bucket_level_access" {
   description = "Enable uniform bucket level access in data lake."
-  type = bool
+  type        = bool
 }
 
 variable "datalake_public_access_prevention" {
   description = "Public access prevention for the datalake."
-  type = string
+  type        = string
 }
 
 variable "datalake_lifecycle_rule_action" {
   description = "Action for life cycle rule in data lake."
-  type = string
+  type        = string
 }
 
 variable "datalake_lifecycle_rule_condition_age_days" {
   description = "Age in days for life cycle rule in data lake."
-  type = number
+  type        = number
 }
 
 variable "datalake_force_destroy" {
   description = "Enable force destroy for data lake."
-  type = bool
+  type        = bool
 }
 
 // Dataproc Configurations
@@ -161,51 +161,144 @@ variable "dataproc_allow_zero_workers" {
 
 variable "bigquery_staging_dataset_name" {
   description = "Dataset name to store raw tables."
-  type = string
+  type        = string
 }
 
 variable "bigquery_staging_dataset_description" {
   description = "Description for a BigQuery dataset."
-  type = string
+  type        = string
 }
 
 variable "bigquery_staging_dataset_region" {
   description = "Region for BigQuery datasets."
-  type = string
+  type        = string
 }
 
 variable "bigquery_staging_dataset_delete_contents_on_destroy" {
   description = "Delete contents on destroy for BigQuery staging dataset."
-  type = bool
+  type        = bool
 }
 
 // business staging table configurations
 
 variable "bigquery_staging_business_table_name" {
   description = "Staging table name to store business data."
-  type = string
+  type        = string
 }
 
 variable "bigquery_staging_business_table_description" {
   description = "Description of the business staging table."
-  type = string
+  type        = string
 }
 
 variable "bigquery_staging_business_table_deletion_protection" {
   description = "Deletion protection for business staging table."
-  type = bool
+  type        = bool
 }
 
 variable "bigquery_staging_business_table_schema_filepath" {
   description = "Table schema file path foe business staging table."
-  type = string
+  type        = string
+}
+
+variable "bigquery_staging_business_table_partition_column" {
+  description = "Partition column for staging business table"
+  type        = string
+}
+
+// checkin staging table configuration
+
+variable "bigquery_staging_checkin_table_name" {
+  description = "Staging table name to store business data."
+  type        = string
+}
+
+variable "bigquery_staging_checkin_table_description" {
+  description = "Description of the business staging table."
+  type        = string
+}
+
+variable "bigquery_staging_checkin_table_deletion_protection" {
+  description = "Deletion protection for business staging table."
+  type        = bool
+}
+
+variable "bigquery_staging_checkin_table_schema_filepath" {
+  description = "Table schema file path foe business staging table."
+  type        = string
+}
+
+// reviews staging table configuration
+
+variable "bigquery_staging_reviews_table_name" {
+  description = "Staging table name to store business data."
+  type        = string
+}
+
+variable "bigquery_staging_reviews_table_description" {
+  description = "Description of the business staging table."
+  type        = string
+}
+
+variable "bigquery_staging_reviews_table_deletion_protection" {
+  description = "Deletion protection for business staging table."
+  type        = bool
+}
+
+variable "bigquery_staging_reviews_table_schema_filepath" {
+  description = "Table schema file path foe business staging table."
+  type        = string
+}
+
+// tips staging table configuration
+
+variable "bigquery_staging_tips_table_name" {
+  description = "Staging table name to store business data."
+  type        = string
+}
+
+variable "bigquery_staging_tips_table_description" {
+  description = "Description of the business staging table."
+  type        = string
+}
+
+variable "bigquery_staging_tips_table_deletion_protection" {
+  description = "Deletion protection for business staging table."
+  type        = bool
+}
+
+variable "bigquery_staging_tips_table_schema_filepath" {
+  description = "Table schema file path foe business staging table."
+  type        = string
+}
+
+// users staging table configurations
+
+variable "bigquery_staging_users_table_name" {
+  description = "Staging table name to store business data."
+  type        = string
+}
+
+variable "bigquery_staging_users_table_description" {
+  description = "Description of the business staging table."
+  type        = string
+}
+
+variable "bigquery_staging_users_table_deletion_protection" {
+  description = "Deletion protection for business staging table."
+  type        = bool
+}
+
+variable "bigquery_staging_users_table_schema_filepath" {
+  description = "Table schema file path foe business staging table."
+  type        = string
 }
 
 // Composer environment name
 
 variable "composer_env_name" {
   description = "Cloud Composer environment name"
-  type = string
+  type        = string
 }
 
 variable "composer_region" {
@@ -213,7 +306,7 @@ variable "composer_region" {
 }
 
 variable "compose_image_version" {
-  type = string
+  type        = string
   description = "Cloud Composer Image Version."
 }
 

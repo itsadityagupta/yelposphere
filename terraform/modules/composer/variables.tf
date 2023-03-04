@@ -1,6 +1,6 @@
 variable "composer_env_name" {
   description = "Cloud Composer environment name"
-  type = string
+  type        = string
 }
 
 variable "composer_region" {
@@ -8,7 +8,7 @@ variable "composer_region" {
 }
 
 variable "compose_image_version" {
-  type = string
+  type        = string
   description = "Cloud Composer Image Version."
 }
 
