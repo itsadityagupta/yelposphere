@@ -1,0 +1,87 @@
+{
+  "airflow_dags_folder_path": {
+    "sensitive": false,
+    "type": "string",
+    "value": "gs://asia-south1-yelp-orchestrat-8145a9ca-bucket/dags"
+  },
+  "bigquery_staging_business_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "stg_businesses"
+  },
+  "bigquery_staging_checkin_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "stg_checkin"
+  },
+  "bigquery_staging_dataset": {
+    "sensitive": false,
+    "type": "string",
+    "value": "staging"
+  },
+  "bigquery_staging_reviews_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "stg_reviews"
+  },
+  "bigquery_staging_tips_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "stg_tips"
+  },
+  "bigquery_staging_users_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "stg_users"
+  },
+  "datalake_url": {
+    "sensitive": false,
+    "type": "string",
+    "value": "gs://dezoomcamp2023_capstone_project_datalake"
+  },
+  "dataproc_cluster_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "yelp-preprocess"
+  },
+  "dataproc_temp_bucket": {
+    "sensitive": false,
+    "type": "string",
+    "value": "zoomcampdataproctempbucket2023"
+  },
+  "ingest_business_data_script_uri": {
+    "sensitive": false,
+    "type": "string",
+    "value": "scripts/ingest_businesses_data.py"
+  },
+  "ingest_checkin_data_script_uri": {
+    "sensitive": false,
+    "type": "string",
+    "value": "scripts/ingest_checkin_data.py"
+  },
+  "ingest_reviews_data_script_uri": {
+    "sensitive": false,
+    "type": "string",
+    "value": "scripts/ingest_reviews_data.py"
+  },
+  "ingest_tips_data_script_uri": {
+    "sensitive": false,
+    "type": "string",
+    "value": "scripts/ingest_tips_data.py"
+  },
+  "ingest_users_data_uri": {
+    "sensitive": false,
+    "type": "string",
+    "value": "scripts/ingest_users_data.py"
+  },
+  "project_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "dtc-de-zoomcamp-2023"
+  },
+  "region": {
+    "sensitive": false,
+    "type": "string",
+    "value": "asia-south1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "airflow_dags_folder_path": "gs://asia-south1-yelp-orchestrat-8145a9ca-bucket/dags",
+  "bigquery_staging_business_table": "stg_businesses",
+  "bigquery_staging_checkin_table": "stg_checkin",
+  "bigquery_staging_dataset": "staging",
+  "bigquery_staging_reviews_table": "stg_reviews",
+  "bigquery_staging_tips_table": "stg_tips",
+  "bigquery_staging_users_table": "stg_users",
+  "datalake_url": "gs://dezoomcamp2023_capstone_project_datalake",
+  "dataproc_cluster_name": "yelp-preprocess",
+  "dataproc_temp_bucket": "zoomcampdataproctempbucket2023",
+  "ingest_business_data_script_uri": "scripts/ingest_businesses_data.py",
+  "ingest_checkin_data_script_uri": "scripts/ingest_checkin_data.py",
+  "ingest_reviews_data_script_uri": "scripts/ingest_reviews_data.py",
+  "ingest_tips_data_script_uri": "scripts/ingest_tips_data.py",
+  "ingest_users_data_uri": "scripts/ingest_users_data.py",
+  "project_id": "dtc-de-zoomcamp-2023",
+  "region": "asia-south1"
+}
