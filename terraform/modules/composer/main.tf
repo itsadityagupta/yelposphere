@@ -41,3 +41,11 @@ resource "google_composer_environment" "orchestrator" {
     environment_size = var.composer_environment_size //"ENVIRONMENT_SIZE_SMALL" // TODO: Make it medium
   }
 }
+
+resource "google_storage_bucket_object" "upload_dag"{
+  bucket = local.dags_bucket_name
+  name = "dags/ingest_data_dags.py"
+  source = var.dags_file_path
+
+  depends_on = [google_composer_environment.orchestrator]
+}

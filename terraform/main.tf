@@ -26,6 +26,14 @@ module "storage" {
   datalake_lifecycle_rule_action             = var.datalake_lifecycle_rule_action
   datalake_lifecycle_rule_condition_age_days = var.datalake_lifecycle_rule_condition_age_days
   datalake_force_destroy                     = var.datalake_force_destroy
+
+  datalake_copy_data_from_bucket = var.datalake_copy_data_from_bucket
+
+  ingest_business_data_script_path = var.ingest_business_data_script_path
+  ingest_checkin_data_script_path  = var.ingest_checkin_data_script_path
+  ingest_reviews_data_script_path  = var.ingest_reviews_data_script_path
+  ingest_tips_data_script_path     = var.ingest_tips_data_script_path
+  ingest_users_data_script_path    = var.ingest_users_data_script_path
 }
 
 module "bigquery" {
@@ -116,6 +124,7 @@ module "composer" {
   compose_image_version          = var.compose_image_version
   composer_service_account_email = var.composer_service_account_email
   composer_environment_size      = var.composer_environment_size
+  dags_file_path = var.dags_file_path
 
   // scheduler config
   scheduler_cpu        = var.scheduler_cpu
@@ -134,8 +143,4 @@ module "composer" {
   worker_storage_gb = var.worker_storage_gb
   worker_min_count  = var.worker_min_count
   worker_max_count  = var.worker_max_count
-}
-
-module "apis" {
-  source = "./modules/apis"
 }

@@ -13,6 +13,12 @@ datalake_public_access_prevention          = "enforced"
 datalake_lifecycle_rule_action             = "Delete"
 datalake_lifecycle_rule_condition_age_days = 30
 datalake_force_destroy                     = true
+datalake_copy_data_from_bucket             = "gcs_capstone_dezoomcamp"
+ingest_business_data_script_path           = "../spark_jobs/ingest_businesses_data.py"
+ingest_checkin_data_script_path            = "../spark_jobs/ingest_checkin_data.py"
+ingest_reviews_data_script_path            = "../spark_jobs/ingest_reviews_data.py"
+ingest_tips_data_script_path               = "../spark_jobs/ingest_tips_data.py"
+ingest_users_data_script_path              = "../spark_jobs/ingest_users_data.py"
 
 # BigQuery Configurations
 bigquery_staging_dataset_name                       = "staging" // TODO
@@ -94,3 +100,4 @@ worker_memory_gb               = 1.875
 worker_storage_gb              = 1
 worker_min_count               = 1
 worker_max_count               = 3
+dags_file_path = "../cloud_composer/dag.py"

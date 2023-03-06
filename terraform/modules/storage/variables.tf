@@ -36,3 +36,33 @@ variable "datalake_force_destroy" {
   description = "Enable force destroy for data lake."
   type        = bool
 }
+
+variable "datalake_copy_data_from_bucket" {
+  description = "Bucket name to copy data from"
+  type        = string
+}
+
+variable "ingest_business_data_script_path" {
+  description = "Path to the ingest_businesses_data script"
+  type        = string
+}
+
+variable "ingest_checkin_data_script_path" {
+  description = "Path to the ingest_checkin_data script"
+  type        = string
+}
+
+variable "ingest_reviews_data_script_path" {
+  description = "Path to the ingest_reviews_data script"
+  type        = string
+}
+
+variable "ingest_tips_data_script_path" {
+  description = "Path to the ingest_tips_data script"
+  type        = string
+}
+
+variable "ingest_users_data_script_path" {
+  description = "Path to the ingest_users_data script"
+  type        = string
+}

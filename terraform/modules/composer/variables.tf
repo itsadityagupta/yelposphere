@@ -1,3 +1,7 @@
+locals {
+  dags_bucket_name = split("/", google_composer_environment.orchestrator.config[0].dag_gcs_prefix)[2]
+}
+
 variable "composer_env_name" {
   description = "Cloud Composer environment name"
   type        = string
@@ -66,4 +70,8 @@ variable "worker_min_count" {
 
 variable "worker_max_count" {
   type = number
+}
+
+variable "dags_file_path" {
+  type = string
 }
