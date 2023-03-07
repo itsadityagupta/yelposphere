@@ -56,6 +56,16 @@ resource "google_dataproc_cluster" "dataproc-cluster" {
       }
     }
 
+    worker_config {
+      num_instances = var.dataproc_master_num_instances
+      machine_type  = var.dataproc_master_machine_type
+
+      disk_config {
+        boot_disk_type    = var.dataproc_worker_boot_disk_type
+        boot_disk_size_gb = var.dataproc_worker_boot_disk_size_gb
+      }
+    }
+
     software_config {
       image_version = var.dataproc_image_version
       override_properties = {

@@ -90,6 +90,10 @@ module "dataproc" {
   dataproc_master_machine_type           = var.dataproc_master_machine_type
   dataproc_master_boot_disk_type         = var.dataproc_master_boot_disk_type
   dataproc_master_boot_disk_size_gb      = var.dataproc_master_boot_disk_size_gb
+  dataproc_worker_num_instances          = var.dataproc_worker_num_instances
+  dataproc_worker_machine_type           = var.dataproc_worker_boot_disk_type
+  dataproc_worker_boot_disk_type         = var.dataproc_worker_boot_disk_type
+  dataproc_worker_boot_disk_size_gb      = var.dataproc_worker_boot_disk_size_gb
   dataproc_image_version                 = var.dataproc_image_version
   dataproc_allow_zero_workers            = var.dataproc_allow_zero_workers
 
@@ -124,7 +128,7 @@ module "composer" {
   compose_image_version          = var.compose_image_version
   composer_service_account_email = var.composer_service_account_email
   composer_environment_size      = var.composer_environment_size
-  dags_file_path = var.dags_file_path
+  dags_file_path                 = var.dags_file_path
 
   // scheduler config
   scheduler_cpu        = var.scheduler_cpu

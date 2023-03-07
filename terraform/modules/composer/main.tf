@@ -42,9 +42,9 @@ resource "google_composer_environment" "orchestrator" {
   }
 }
 
-resource "google_storage_bucket_object" "upload_dag"{
+resource "google_storage_bucket_object" "upload_dag" {
   bucket = local.dags_bucket_name
-  name = "dags/ingest_data_dags.py"
+  name   = "dags/ingest_data_dags.py"
   source = var.dags_file_path
 
   depends_on = [google_composer_environment.orchestrator]

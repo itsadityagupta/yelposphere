@@ -179,6 +179,22 @@ variable "dataproc_master_boot_disk_size_gb" {
   type = number
 }
 
+variable "dataproc_worker_num_instances" {
+  type = number
+}
+
+variable "dataproc_worker_machine_type" {
+  type = string
+}
+
+variable "dataproc_worker_boot_disk_type" {
+  type = string
+}
+
+variable "dataproc_worker_boot_disk_size_gb" {
+  type = number
+}
+
 variable "dataproc_image_version" {
   type = string
 }

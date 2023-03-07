@@ -57,12 +57,12 @@ resource "google_storage_transfer_job" "ingest" {
   schedule {
     repeat_interval = null
     schedule_start_date {
-      day   = 5
+      day   = 7
       month = 3
       year  = 2023
     }
     schedule_end_date {
-      day   = 5
+      day   = 7
       month = 3
       year  = 2023
     }
