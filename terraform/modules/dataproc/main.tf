@@ -57,8 +57,8 @@ resource "google_dataproc_cluster" "dataproc-cluster" {
     }
 
     worker_config {
-      num_instances = var.dataproc_master_num_instances
-      machine_type  = var.dataproc_master_machine_type
+      num_instances = var.dataproc_worker_num_instances
+      machine_type  = var.dataproc_worker_machine_type
 
       disk_config {
         boot_disk_type    = var.dataproc_worker_boot_disk_type

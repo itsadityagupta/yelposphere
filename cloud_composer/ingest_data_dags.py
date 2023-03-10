@@ -22,7 +22,7 @@ INGEST_TIPS_FILE_PATH = Variable.get('ingest_tips_data_script_uri')
 INGEST_USERS_FILE_PATH = Variable.get('ingest_users_data_uri')
 
 BUSINESS_DATA = Variable.get("business_data")
-CHECKIN_DATA = Variable.get("checking_data")
+CHECKIN_DATA = Variable.get("checkin_data")
 REVIEWS_DATA = Variable.get("reviews_data")
 TIPS_DATA = Variable.get("tips_data")
 USERS_DATA = Variable.get("users_data")
