@@ -1,3 +1,12 @@
+{{
+    config(
+        partition_by={
+            "field": "is_open",
+            "data_type": "int64",
+            "range": {"start": 0, "end": 2, "interval": 1},
+        }
+    )
+}}
 with
     stg__businesses_cte as (
         select
@@ -17,12 +26,10 @@ with
                 null,
                 array(
                     select trim(category)
-                    from unnest(split(categories, ';')) as category
+                    from unnest(split(categories, ',')) as category
                 )
-            ) as category_array,
-            categories
+            ) as categories
         from {{ source("yelp", "stg_businesses") }}
     )
-
 select *
 from stg__businesses_cte
