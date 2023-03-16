@@ -26,6 +26,11 @@ bigquery_staging_dataset_description                = "Stores staging tables for
 bigquery_staging_dataset_region                     = "asia-south1" // TODO
 bigquery_staging_dataset_delete_contents_on_destroy = true
 
+bigquery_dbt_dataset_name                       = "yelp_dbt"
+bigquery_dbt_dataset_description                = "Stores dbt models"
+bigquery_dbt_dataset_region                     = "asia-south1"
+bigquery_dbt_dataset_delete_contents_on_destroy = true
+
 bigquery_staging_business_table_name                = "stg_businesses" // TODO
 bigquery_staging_business_table_description         = "Staging businesses table"
 bigquery_staging_business_table_deletion_protection = false
@@ -55,14 +60,14 @@ bigquery_staging_users_table_schema_filepath     = "modules/bigquery/schemas/use
 # Dataproc Configurations
 
 dataproc_cluster_name                  = "yelp-preprocess-prod" // TODO
-dataproc_cluster_region                = "asia-south1"     // TODO
+dataproc_cluster_region                = "asia-south1"          // TODO
 dataproc_graceful_decommission_timeout = "120s"
 dataproc_master_num_instances          = 1
-dataproc_master_machine_type           = "e2-standard-4"
+dataproc_master_machine_type           = "e2-standard-2"
 dataproc_master_boot_disk_type         = "pd-standard"
 dataproc_master_boot_disk_size_gb      = 30
 dataproc_worker_num_instances          = 2
-dataproc_worker_machine_type           = "e2-standard-4"
+dataproc_worker_machine_type           = "e2-standard-2"
 dataproc_worker_boot_disk_type         = "pd-standard"
 dataproc_worker_boot_disk_size_gb      = 30
 dataproc_image_version                 = "2.1.4-ubuntu20"
@@ -104,4 +109,4 @@ worker_memory_gb               = 1.875
 worker_storage_gb              = 1
 worker_min_count               = 1
 worker_max_count               = 3
-dags_file_path                 = "../cloud_composer/dag.py"
+dags_file_path                 = "../cloud_composer/ingest_data_dags.py"

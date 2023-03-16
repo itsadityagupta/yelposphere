@@ -1,0 +1,186 @@
+version: 2
+
+sources:
+
+  - name: yelp
+    schema: staging
+    database: dtc-de-zoomcamp-2023
+    tables:
+      - name: stg_businesses
+      - name: stg_checkin
+      - name: stg_reviews
+      - name: stg_tips
+      - name: stg_users
+
+models:
+  - name: stg__businesses
+    description: "A staging table containing business data"
+    columns:
+      - name: business_id
+        description: "Unique identifier for a business"
+        tests:
+          - unique
+        meta:
+          spark_type: StringType()
+      - name: name
+        description: "The name of the business"
+        meta:
+          spark_type: StringType()
+      - name: address
+        description: "The street address of the business"
+        meta:
+          spark_type: StringType()
+      - name: city
+        description: "The city where the business is located"
+        meta:
+          spark_type: StringType()
+      - name: state
+        description: "The state where the business is located"
+        meta:
+          spark_type: StringType()
+      - name: postal_code
+        description: "The postal code where the business is located"
+        meta:
+          spark_type: StringType()
+      - name: latitude
+        description: "The latitude of the business location"
+        meta:
+          spark_type: FloatType()
+      - name: longitude
+        description: "The longitude of the business location"
+        meta:
+          spark_type: FloatType()
+      - name: stars
+        description: "The average rating of the business"
+        meta:
+          spark_type: FloatType()
+      - name: review_count
+        description: "The number of reviews for the business"
+        meta:
+          spark_type: IntegerType()
+      - name: is_open
+        description: "Indicates whether the business is currently open"
+        meta:
+          spark_type: IntegerType()
+      - name: categories
+        description: "The categories that the business belongs to"
+        meta:
+          spark_type: StringType()
+
+  - name: stg__checkins
+    description: "A staging table containing check-in data"
+    columns:
+      - name: business_id
+        description: "The identifier of the business"
+        meta:
+          spark_type: StringType()
+      - name: date
+        description: "The dates of the check-in"
+        meta:
+          spark_type: StringType()
+
+  - name: stg__reviews
+    description: "A staging table containing review data"
+    columns:
+      - name: review_id
+        description: "Unique identifier for a review"
+        tests:
+          - unique
+        meta:
+          spark_type: StringType()
+      - name: user_id
+        description: "The identifier of the user who wrote the review"
+        meta:
+          spark_type: StringType()
+      - name: business_id
+        description: "The identifier of the business being reviewed"
+        meta:
+          spark_type: StringType()
+      - name: stars
+        description: "The rating given in the review"
+        meta:
+          spark_type: IntegerType()
+      - name: cool
+        description: "The number of 'cool' votes the review received"
+        meta:
+          spark_type: IntegerType()
+      - name: date
+        description: "The date the review was written"
+        meta:
+          spark_type: TimestampType()
+      - name: funny
+        description: "The number of 'funny' votes the review received"
+        meta:
+          spark_type: IntegerType()
+      - name: useful
+        description: "The number of 'useful' votes the review received"
+        meta:
+          spark_type: IntegerType()
+      - name: text
+        description: "The text content of the review"
+        meta:
+          spark_type: StringType()
+
+  - name: stg__tips
+    description: "A staging table containing tip data"
+    columns:
+      - name: business_id
+        description: "The identifier of the business where the tip was given"
+        meta:
+          spark_type: StringType()
+      - name: user_id
+        description: "The identifier of the user who gave the tip"
+        meta:
+          spark_type: StringType()
+      - name: date
+        description: "The date the tip was given"
+        meta:
+          spark_type: TimestampType()
+      - name: text
+        description: "The text content of the tip"
+        meta:
+          spark_type: StringType()
+      - name: compliment_count
+        description: "The number of compliments the tip has received"
+        meta:
+          spark_type: IntegerType()
+
+  - name: stg__users
+    description: "A staging table containing user data"
+    columns:
+      - name: user_id
+        description: "The identifier of the user"
+        meta:
+          spark_type: StringType()
+      - name: name
+        description: "The name of the user"
+        meta:
+          spark_type: StringType()
+      - name: review_count
+        description: "The number of reviews the user has written"
+        meta:
+          spark_type: IntegerType()
+      - name: yelping_since
+        description: "The date the user joined Yelp"
+        meta:
+          spark_type: TimestampType()
+      - name: useful
+        description: "The number of 'useful' votes the user's reviews have received"
+        meta:
+          spark_type: IntegerType()
+      - name: funny
+        description: "The number of 'funny' votes the user's reviews have received"
+        meta:
+          spark_type: IntegerType()
+      - name: cool
+        description: "The number of 'cool' votes the user's reviews have received"
+        meta:
+          spark_type: IntegerType()
+      - name: fans
+        description: "The number of fans the user has"
+        meta:
+          spark_type: IntegerType()
+      - name: average_stars
+        description: "The user's average star rating across all reviews"
+        meta:
+          spark_type: FloatType()

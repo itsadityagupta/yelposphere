@@ -2,3 +2,6 @@
 terraform/.terraform.tfstate.lock.info
 terraform/terraform.tfstate
 terraform/*.backup
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/

@@ -229,6 +229,28 @@ variable "bigquery_staging_dataset_delete_contents_on_destroy" {
   type        = bool
 }
 
+// DBT dataset configurations
+
+variable "bigquery_dbt_dataset_name" {
+  description = "Dataset name to store dbt models."
+  type        = string
+}
+
+variable "bigquery_dbt_dataset_description" {
+  description = "Description for a BigQuery dataset."
+  type        = string
+}
+
+variable "bigquery_dbt_dataset_region" {
+  description = "Region for BigQuery datasets."
+  type        = string
+}
+
+variable "bigquery_dbt_dataset_delete_contents_on_destroy" {
+  description = "Delete contents on destroy for BigQuery staging dataset."
+  type        = bool
+}
+
 // business staging table configurations
 
 variable "bigquery_staging_business_table_name" {
