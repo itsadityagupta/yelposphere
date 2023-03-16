@@ -4,7 +4,7 @@ with
             user_id,
             name,
             review_count,
-            to_timestamp(yelping_since) as yelping_since,
+            timestamp(yelping_since) as yelping_since,
             useful,
             funny,
             cool,
@@ -12,7 +12,5 @@ with
             average_stars
         from {{ source("yelp", "stg_users") }}
     )
-
 select *
 from stg__users_cte
-;

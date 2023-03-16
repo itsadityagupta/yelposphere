@@ -12,6 +12,14 @@ with
             stars,
             review_count,
             is_open,
+            if(
+                categories is null or categories = '',
+                null,
+                array(
+                    select trim(category)
+                    from unnest(split(categories, ';')) as category
+                )
+            ) as category_array,
             categories
         from {{ source("yelp", "stg_businesses") }}
     )

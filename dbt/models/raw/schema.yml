@@ -1,13 +1,6 @@
 version: 2
 
 sources:
-  - name: staging
-    schema: week5
-    database: dtc-de-zoomcamp-2023
-    tables:
-     - name: green_taxi
-     - name: yellow_taxi
-     - name: fhv
 
   - name: yelp
     schema: staging
