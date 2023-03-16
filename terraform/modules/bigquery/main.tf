@@ -6,6 +6,14 @@ resource "google_bigquery_dataset" "staging_dataset" {
 
   delete_contents_on_destroy = var.bigquery_staging_dataset_delete_contents_on_destroy
 }
+resource "google_bigquery_dataset" "dbt_dataset" {
+  dataset_id  = var.bigquery_dbt_dataset_name
+  project     = var.project_id
+  location    = var.bigquery_dbt_dataset_region
+  description = var.bigquery_dbt_dataset_description
+
+  delete_contents_on_destroy = var.bigquery_dbt_dataset_delete_contents_on_destroy
+}
 resource "google_bigquery_table" "business_staging_table" {
   dataset_id          = google_bigquery_dataset.staging_dataset.dataset_id
   table_id            = var.bigquery_staging_business_table_name

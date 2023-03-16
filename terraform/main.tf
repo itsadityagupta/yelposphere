@@ -47,6 +47,12 @@ module "bigquery" {
   bigquery_staging_dataset_region                     = var.bigquery_staging_dataset_region
   bigquery_staging_dataset_delete_contents_on_destroy = var.bigquery_staging_dataset_delete_contents_on_destroy
 
+  // dbt dataset config
+  bigquery_dbt_dataset_name                       = var.bigquery_dbt_dataset_name
+  bigquery_dbt_dataset_description                = var.bigquery_dbt_dataset_description
+  bigquery_dbt_dataset_region                     = var.bigquery_dbt_dataset_region
+  bigquery_dbt_dataset_delete_contents_on_destroy = var.bigquery_dbt_dataset_delete_contents_on_destroy
+
   // business staging table config
   bigquery_staging_business_table_name                = var.bigquery_staging_business_table_name
   bigquery_staging_business_table_description         = var.bigquery_staging_business_table_description

@@ -26,6 +26,11 @@ bigquery_staging_dataset_description                = "Stores staging tables for
 bigquery_staging_dataset_region                     = "asia-south1" // TODO
 bigquery_staging_dataset_delete_contents_on_destroy = true
 
+bigquery_dbt_dataset_name                       = "yelp_dbt"
+bigquery_dbt_dataset_description                = "Stores dbt models"
+bigquery_dbt_dataset_region                     = "asia-south1"
+bigquery_dbt_dataset_delete_contents_on_destroy = true
+
 bigquery_staging_business_table_name                = "stg_businesses" // TODO
 bigquery_staging_business_table_description         = "Staging businesses table"
 bigquery_staging_business_table_deletion_protection = false
@@ -55,7 +60,7 @@ bigquery_staging_users_table_schema_filepath     = "modules/bigquery/schemas/use
 # Dataproc Configurations
 
 dataproc_cluster_name                  = "yelp-preprocess-prod" // TODO
-dataproc_cluster_region                = "asia-south1"     // TODO
+dataproc_cluster_region                = "asia-south1"          // TODO
 dataproc_graceful_decommission_timeout = "120s"
 dataproc_master_num_instances          = 1
 dataproc_master_machine_type           = "e2-standard-2"
