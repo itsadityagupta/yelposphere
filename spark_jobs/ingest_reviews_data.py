@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, StringType, TimestampType, IntegerType
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType, IntegerType, FloatType
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
@@ -21,7 +21,7 @@ review_schema = StructType([
     StructField("review_id", StringType(), True),
     StructField("user_id", StringType(), True),
     StructField("business_id", StringType(), True),
-    StructField("stars", IntegerType(), True),
+    StructField("stars", FloatType(), True),
     StructField("cool", IntegerType(), True),
     StructField("date", TimestampType(), True),
     StructField("funny", IntegerType(), True),
