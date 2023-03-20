@@ -35,6 +35,6 @@ models:
   yelp_transformations:
     # Applies to all files under models/example/
     raw:
-      materialized: view
+      materialized: table
     core:
       materialized: table

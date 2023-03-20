@@ -94,6 +94,7 @@ models:
           - relationships:
               field: user_id
               to: ref('stg__users')
+              severity: 'warn'
         meta:
           spark_type: StringType()
       - name: business_id
