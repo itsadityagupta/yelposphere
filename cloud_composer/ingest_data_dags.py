@@ -4,6 +4,7 @@ from airflow.models import Variable
 from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
 from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
 from airflow.providers.google.cloud.operators.gcs import GCSDeleteObjectsOperator
+from airflow.providers.dbt.cloud.operators.dbt import DbtCloudRunJobOperator
 from airflow.utils.dates import days_ago
 
 PROJECT_ID = Variable.get("project_id")
@@ -14,6 +15,9 @@ DATALAKE = DATALAKE_URL[5:]
 
 DATAPROC_CLUSTER = Variable.get("dataproc_cluster_name")
 DATAPROC_TEMP_BUCKET = Variable.get("dataproc_temp_bucket")
+
+DBT_CLOUD_ACCOUNT_ID = Variable.get("dbt_cloud_account_id")
+DBT_CLOUD_JOB_ID = int(Variable.get("dbt_cloud_job_id"))
 
 INGEST_BUSINESS_FILE_PATH = Variable.get('ingest_business_data_script_uri')
 INGEST_CHECKIN_FILE_PATH = Variable.get('ingest_checkin_data_script_uri')
@@ -121,7 +125,8 @@ default_args = {
     "start_date": days_ago(1),
     "project_id": PROJECT_ID,
     "region": REGION,
-    "retries": 1
+    "retries": 1,
+    "account_id": DBT_CLOUD_ACCOUNT_ID
 }
 
 with models.DAG(
@@ -234,8 +239,21 @@ with models.DAG(
         ]
     )
 
+    run_dbt_tranformations = DbtCloudRunJobOperator(
+        task_id="run_dbt_job",
+        job_id=DBT_CLOUD_JOB_ID,
+        check_interval=20,
+        timeout=600
+    )
+
     business_data_exists >> ingest_business_data_job_submit >> delete_business_data_file
     checkin_data_exists >> ingest_checkin_data_job_submit >> delete_checkin_data_file
     reviews_data_exists >> ingest_reviews_data_job_submit >> delete_reviews_data_file
     tips_data_exists >> ingest_tips_data_job_submit >> delete_tips_data_file
     users_data_exists >> ingest_users_data_job_submit >> delete_users_data_file
+
+    [delete_business_data_file,
+     delete_checkin_data_file,
+     delete_reviews_data_file,
+     delete_tips_data_file,
+     delete_users_data_file] >> run_dbt_tranformations
