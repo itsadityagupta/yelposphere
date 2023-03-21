@@ -36,3 +36,5 @@ models:
     # Applies to all files under models/example/
     raw:
       materialized: table
+    core:
+      materialized: table

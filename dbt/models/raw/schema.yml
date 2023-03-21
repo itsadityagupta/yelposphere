@@ -20,6 +20,7 @@ models:
         description: "Unique identifier for a business"
         tests:
           - unique
+          - not_null
         meta:
           spark_type: StringType()
       - name: name
@@ -42,14 +43,8 @@ models:
         description: "The postal code where the business is located"
         meta:
           spark_type: StringType()
-      - name: latitude
-        description: "The latitude of the business location"
-        meta:
-          spark_type: FloatType()
-      - name: longitude
-        description: "The longitude of the business location"
-        meta:
-          spark_type: FloatType()
+      - name: location
+        description: "The location where the business is located in the form (latitude, longitude)"
       - name: stars
         description: "The average rating of the business"
         meta:
@@ -72,9 +67,13 @@ models:
     columns:
       - name: business_id
         description: "The identifier of the business"
+        tests:
+          - relationships:
+              field: business_id
+              to: ref('stg__businesses')
         meta:
           spark_type: StringType()
-      - name: date
+      - name: checkin_dates
         description: "The dates of the check-in"
         meta:
           spark_type: StringType()
@@ -86,14 +85,24 @@ models:
         description: "Unique identifier for a review"
         tests:
           - unique
+          - not_null
         meta:
           spark_type: StringType()
       - name: user_id
         description: "The identifier of the user who wrote the review"
+        tests:
+          - relationships:
+              field: user_id
+              to: ref('stg__users')
+              severity: 'warn'
         meta:
           spark_type: StringType()
       - name: business_id
         description: "The identifier of the business being reviewed"
+        tests:
+          - relationships:
+              field: business_id
+              to: ref('stg__businesses')
         meta:
           spark_type: StringType()
       - name: stars
@@ -126,10 +135,18 @@ models:
     columns:
       - name: business_id
         description: "The identifier of the business where the tip was given"
+        tests:
+          - relationships:
+              field: business_id
+              to: ref('stg__businesses')
         meta:
           spark_type: StringType()
       - name: user_id
         description: "The identifier of the user who gave the tip"
+        tests:
+          - relationships:
+              field: user_id
+              to: ref('stg__users')
         meta:
           spark_type: StringType()
       - name: date
@@ -150,6 +167,9 @@ models:
     columns:
       - name: user_id
         description: "The identifier of the user"
+        tests:
+          - unique
+          - not_null
         meta:
           spark_type: StringType()
       - name: name
