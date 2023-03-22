@@ -1,7 +1,7 @@
 {
-  "business_data": "",
-  "checkin_data": "",
-  "reviews_data": "",
-  "tips_data": "",
-  "users_data": ""
+  "business_data": "data/raw/yelp_academic_dataset_business.json",
+  "checkin_data": "data/raw/yelp_academic_dataset_checkin.json",
+  "reviews_data": "data/raw/yelp_academic_dataset_review.json",
+  "tips_data": "data/raw/yelp_academic_dataset_tip.json",
+  "users_data": "data/raw/yelp_academic_dataset_user.json"
 }
