@@ -1,5 +1,5 @@
 resource "google_service_account_iam_member" "custom_service_account" {
-  service_account_id = var.composer_service_account_email
+  service_account_id = "projects/${var.project_id}/serviceAccounts/${var.composer_service_account_email}"
   role               = "roles/composer.ServiceAgentV2Ext"
   member             = "serviceAccount:service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com"
 }
@@ -40,6 +40,9 @@ resource "google_composer_environment" "orchestrator" {
 
     environment_size = var.composer_environment_size //"ENVIRONMENT_SIZE_SMALL" // TODO: Make it medium
   }
+  depends_on = [
+    google_service_account_iam_member.custom_service_account
+  ]
 }
 
 resource "google_storage_bucket_object" "upload_dag" {

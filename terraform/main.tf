@@ -129,6 +129,7 @@ module "composer" {
   source = "./modules/composer"
 
   // environment config
+  project_id                     = var.project_id
   project_number                 = var.project_number
   composer_env_name              = var.composer_env_name
   composer_region                = var.composer_region
