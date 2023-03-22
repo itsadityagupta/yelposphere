@@ -1,3 +1,9 @@
+resource "google_service_account_iam_member" "custom_service_account" {
+  service_account_id = var.composer_service_account_email
+  role               = "roles/composer.ServiceAgentV2Ext"
+  member             = "serviceAccount:service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com"
+}
+
 resource "google_composer_environment" "orchestrator" {
   name   = var.composer_env_name
   region = var.composer_region

@@ -2,6 +2,10 @@ locals {
   dags_bucket_name = split("/", google_composer_environment.orchestrator.config[0].dag_gcs_prefix)[2]
 }
 
+variable "project_number" {
+  type = string
+}
+
 variable "composer_env_name" {
   description = "Cloud Composer environment name"
   type        = string

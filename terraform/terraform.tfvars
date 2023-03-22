@@ -1,5 +1,6 @@
-project_id = "dtc-de-zoomcamp-2023" // TODO
-region     = "asia-south1"          // TODO
+project_id     = "dtc-de-zoomcamp-2023" // TODO
+project_number = "168078315494"
+region         = "asia-south1" // TODO
 
 # Change credentials to point to your service account JSON file (if not using GOOGLE_APPLICATION_CREDENTIALS environment variable)
 credentials = ""

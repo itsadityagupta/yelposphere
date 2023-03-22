@@ -1,3 +1,7 @@
+variable "project_number" {
+  description = "Project number"
+  type        = string
+}
 variable "project_id" {
   description = "Your GCP Project ID."
   type        = string
