@@ -5,12 +5,6 @@ resource "google_composer_environment" "orchestrator" {
   config {
     software_config {
       image_version = var.compose_image_version
-      #      pypi_packages = {
-      #        dbt-bigquery = ""
-      #      }
-      env_variables = {
-        FOO = "bar" // TODO: Add if required
-      }
     }
 
     node_config {
