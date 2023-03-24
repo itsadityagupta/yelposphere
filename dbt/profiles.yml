@@ -1,0 +1,14 @@
+default:  # your profile name from dbt_project.yml
+  target: dev  # your development environment
+  outputs:
+
+    dev:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_PROJECT') }}"
+      dataset: "{{ env_var('DBT_DATASET') }}" # DBT_DATASET should be same as bigquery_dbt_dataset_name terraform variable
+      threads: 4
+      keyfile: /secrets/dbt-service-keyfile
+      timeout_seconds: 300
+      priority: interactive
+      retries: 1
