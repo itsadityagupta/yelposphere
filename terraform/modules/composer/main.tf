@@ -1,9 +1,3 @@
-resource "google_service_account_iam_member" "custom_service_account" {
-  service_account_id = "projects/${var.project_id}/serviceAccounts/${var.composer_service_account_email}"
-  role               = "roles/composer.ServiceAgentV2Ext"
-  member             = "serviceAccount:service-${var.project_number}@cloudcomposer-accounts.iam.gserviceaccount.com"
-}
-
 resource "google_composer_environment" "orchestrator" {
   name   = var.composer_env_name
   region = var.composer_region
@@ -38,11 +32,8 @@ resource "google_composer_environment" "orchestrator" {
       }
     }
 
-    environment_size = var.composer_environment_size //"ENVIRONMENT_SIZE_SMALL" // TODO: Make it medium
+    environment_size = var.composer_environment_size
   }
-  depends_on = [
-    google_service_account_iam_member.custom_service_account
-  ]
 }
 
 resource "google_storage_bucket_object" "upload_dag" {
