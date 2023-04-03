@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def run_dbt():
     logging.info("Received a request. Running DBT commands...")
-    result_code = subprocess.call(["/bin/sh", "script.sh"], timeout=300)
+    result_code = subprocess.call(["script.sh"], timeout=300)
     return result_code
 
 
