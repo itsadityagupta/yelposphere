@@ -16,13 +16,29 @@ cmd := exec.Command("/bin/sh", "script.sh")
   log.Fatalf("cmd.Run() failed with %s\n", err)
  }
 }
+
 func main() {
         log.Print("helloworld: starting server...")
-http.HandleFunc("/", handler)
-port := os.Getenv("PORT")
+        http.HandleFunc("/", handler)
+        port := os.Getenv("PORT")
         if port == "" {
                 port = "8080"
         }
-log.Printf("helloworld: listening on %s", port)
-        log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+
+        // Create a new HTTP server with a timeout of 100 seconds
+        srv := &http.Server{
+                Addr:         fmt.Sprintf(":%s", port),
+                Handler:      nil,
+                ReadTimeout:  100 * time.Second,
+                WriteTimeout: 100 * time.Second,
+                IdleTimeout:  100 * time.Second,
+        }
+
+        log.Printf("helloworld: listening on %s", port)
+
+        // Start the server and handle errors
+        err := srv.ListenAndServe()
+        if err != nil && err != http.ErrServerClosed {
+                log.Fatalf("Server error: %s", err)
+        }
 }
