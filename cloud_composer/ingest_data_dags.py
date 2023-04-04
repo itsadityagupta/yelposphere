@@ -1,23 +1,25 @@
 import datetime
 from airflow import models
+from airflow.operators import bash
 from airflow.models import Variable
-from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
-from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
-from airflow.providers.google.cloud.operators.gcs import GCSDeleteObjectsOperator
-from airflow.providers.dbt.cloud.operators.dbt import DbtCloudRunJobOperator
+from airflow.hooks.base import BaseHook
 from airflow.utils.dates import days_ago
+from airflow.providers.http.operators.http import SimpleHttpOperator
+from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
+from airflow.providers.google.cloud.operators.gcs import GCSDeleteObjectsOperator
+from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
 
 PROJECT_ID = Variable.get("project_id")
 REGION = Variable.get("region")
+
+cloud_run_conn = BaseHook.get_connection("cloud_run")
+cloud_run_app_url = cloud_run_conn.host
 
 DATALAKE_URL = Variable.get("datalake_url")
 DATALAKE = DATALAKE_URL[5:]
 
 DATAPROC_CLUSTER = Variable.get("dataproc_cluster_name")
 DATAPROC_TEMP_BUCKET = Variable.get("dataproc_temp_bucket")
-
-DBT_CLOUD_ACCOUNT_ID = Variable.get("dbt_cloud_account_id")
-DBT_CLOUD_JOB_ID = int(Variable.get("dbt_cloud_job_id"))
 
 INGEST_BUSINESS_FILE_PATH = Variable.get('ingest_business_data_script_uri')
 INGEST_CHECKIN_FILE_PATH = Variable.get('ingest_checkin_data_script_uri')
@@ -125,8 +127,7 @@ default_args = {
     "start_date": days_ago(1),
     "project_id": PROJECT_ID,
     "region": REGION,
-    "retries": 1,
-    "account_id": DBT_CLOUD_ACCOUNT_ID
+    "retries": 1
 }
 
 with models.DAG(
@@ -239,11 +240,19 @@ with models.DAG(
         ]
     )
 
-    run_dbt_tranformations = DbtCloudRunJobOperator(
-        task_id="run_dbt_job",
-        job_id=DBT_CLOUD_JOB_ID,
-        check_interval=20,
-        timeout=600
+    print_token = bash.BashOperator(
+        task_id='print_identity_token',
+        bash_command=f'gcloud auth print-identity-token "--audiences={cloud_run_app_url}"'
+        # The end point of the deployed Cloud Run container for DBT job
+    )
+
+    token = "{{ task_instance.xcom_pull(task_ids='print_token') }}"  # gets output from 'print_token' task
+
+    execute_dbt = SimpleHttpOperator(
+        task_id='execute_dbt_job',
+        method='GET',
+        http_conn_id='cloud_run',
+        headers={'Authorization': 'Bearer ' + token}
     )
 
     business_data_exists >> ingest_business_data_job_submit >> delete_business_data_file
@@ -256,4 +265,4 @@ with models.DAG(
      delete_checkin_data_file,
      delete_reviews_data_file,
      delete_tips_data_file,
-     delete_users_data_file] >> run_dbt_tranformations
+     delete_users_data_file] >> print_token >> execute_dbt
