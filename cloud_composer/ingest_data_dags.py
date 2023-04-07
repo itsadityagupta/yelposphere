@@ -4,7 +4,6 @@ from airflow.operators import bash
 from airflow.models import Variable
 from airflow.hooks.base import BaseHook
 from airflow.utils.dates import days_ago
-from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.providers.google.cloud.sensors.gcs import GCSObjectExistenceSensor
 from airflow.providers.google.cloud.operators.gcs import GCSDeleteObjectsOperator
 from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
@@ -240,19 +239,10 @@ with models.DAG(
         ]
     )
 
-    print_token = bash.BashOperator(
-        task_id='print_identity_token',
-        bash_command=f'gcloud auth print-identity-token "--audiences={cloud_run_app_url}"'
+    dbt_job_run = bash.BashOperator(
+        task_id='run_dbt_job',
+        bash_command=f'curl -H "Authorization: Bearer $(gcloud auth print-identity-token --audiences={cloud_run_app_url})" {cloud_run_app_url}'
         # The end point of the deployed Cloud Run container for DBT job
-    )
-
-    token = "{{ task_instance.xcom_pull(task_ids='print_token') }}"  # gets output from 'print_token' task
-
-    execute_dbt = SimpleHttpOperator(
-        task_id='execute_dbt_job',
-        method='GET',
-        http_conn_id='cloud_run',
-        headers={'Authorization': 'Bearer ' + token}
     )
 
     business_data_exists >> ingest_business_data_job_submit >> delete_business_data_file
@@ -265,4 +255,4 @@ with models.DAG(
      delete_checkin_data_file,
      delete_reviews_data_file,
      delete_tips_data_file,
-     delete_users_data_file] >> print_token >> execute_dbt
+     delete_users_data_file] >> dbt_job_run
