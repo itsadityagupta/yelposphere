@@ -27,8 +27,10 @@ with Diagram("Yelposphere Architecture Diagram", graph_attr=graph_attr):
     build = Build("Cloud Build")
     registry = ContainerRegistry("Artifact Registry")
     repo = Custom("Github Repo", "repo.png")
+    data_studio = Custom("", "datastudio.png")
 
     gcs >> dataproc >> bigquery << run
     run << registry
     registry << build
     build << repo
+    bigquery >> data_studio
