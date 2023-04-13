@@ -130,7 +130,7 @@ default_args = {
 }
 
 with models.DAG(
-        "ingest_data_to_bigquery",  # The id you will see in the DAG airflow page
+        "process_yelp_data",  # The id you will see in the DAG airflow page
         default_args=default_args,  # The interval with which to schedule the DAG
         schedule_interval=datetime.timedelta(days=10),  # Override to match your needs
 ) as dag:
