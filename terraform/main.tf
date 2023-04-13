@@ -27,8 +27,6 @@ module "storage" {
   datalake_lifecycle_rule_condition_age_days = var.datalake_lifecycle_rule_condition_age_days
   datalake_force_destroy                     = var.datalake_force_destroy
 
-  datalake_copy_data_from_bucket = var.datalake_copy_data_from_bucket
-
   ingest_business_data_script_path = var.ingest_business_data_script_path
   ingest_checkin_data_script_path  = var.ingest_checkin_data_script_path
   ingest_reviews_data_script_path  = var.ingest_reviews_data_script_path
@@ -130,7 +128,6 @@ module "composer" {
 
   // environment config
   project_id                     = var.project_id
-  project_number                 = var.project_number
   composer_env_name              = var.composer_env_name
   composer_region                = var.composer_region
   compose_image_version          = var.compose_image_version

@@ -1,7 +1,3 @@
-variable "project_number" {
-  description = "Project number"
-  type        = string
-}
 variable "project_id" {
   description = "Your GCP Project ID."
   type        = string
@@ -57,11 +53,6 @@ variable "datalake_lifecycle_rule_condition_age_days" {
 variable "datalake_force_destroy" {
   description = "Enable force destroy for data lake."
   type        = bool
-}
-
-variable "datalake_copy_data_from_bucket" {
-  description = "Bucket name to copy data from"
-  type        = string
 }
 
 variable "ingest_business_data_script_path" {

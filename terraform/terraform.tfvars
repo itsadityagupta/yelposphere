@@ -1,5 +1,4 @@
 project_id     = "dtc-de-zoomcamp-2023" // TODO
-project_number = "168078315494"
 region         = "asia-south1" // TODO
 
 # Change credentials to point to your service account JSON file (if not using GOOGLE_APPLICATION_CREDENTIALS environment variable)
@@ -14,7 +13,6 @@ datalake_public_access_prevention          = "enforced"
 datalake_lifecycle_rule_action             = "Delete"
 datalake_lifecycle_rule_condition_age_days = 30
 datalake_force_destroy                     = true
-datalake_copy_data_from_bucket             = "gcs_capstone_dezoomcamp"
 ingest_business_data_script_path           = "../spark_jobs/ingest_businesses_data.py"
 ingest_checkin_data_script_path            = "../spark_jobs/ingest_checkin_data.py"
 ingest_reviews_data_script_path            = "../spark_jobs/ingest_reviews_data.py"
@@ -22,17 +20,17 @@ ingest_tips_data_script_path               = "../spark_jobs/ingest_tips_data.py"
 ingest_users_data_script_path              = "../spark_jobs/ingest_users_data.py"
 
 # BigQuery Configurations
-bigquery_staging_dataset_name                       = "staging" // TODO
+bigquery_staging_dataset_name                       = "staging"
 bigquery_staging_dataset_description                = "Stores staging tables for yelp."
 bigquery_staging_dataset_region                     = "asia-south1" // TODO
 bigquery_staging_dataset_delete_contents_on_destroy = true
 
 bigquery_dbt_dataset_name                       = "yelp_dbt"
 bigquery_dbt_dataset_description                = "Stores dbt models"
-bigquery_dbt_dataset_region                     = "asia-south1"
+bigquery_dbt_dataset_region                     = "asia-south1" // TODO
 bigquery_dbt_dataset_delete_contents_on_destroy = true
 
-bigquery_staging_business_table_name                = "stg_businesses" // TODO
+bigquery_staging_business_table_name                = "stg_businesses"
 bigquery_staging_business_table_description         = "Staging businesses table"
 bigquery_staging_business_table_deletion_protection = false
 bigquery_staging_business_table_schema_filepath     = "modules/bigquery/schemas/businesses.json"
@@ -60,7 +58,7 @@ bigquery_staging_users_table_schema_filepath     = "modules/bigquery/schemas/use
 
 # Dataproc Configurations
 
-dataproc_cluster_name                  = "yelp-preprocess-prod" // TODO
+dataproc_cluster_name                  = "yelp-preprocess-prod"
 dataproc_cluster_region                = "asia-south1"          // TODO
 dataproc_graceful_decommission_timeout = "120s"
 dataproc_master_num_instances          = 1
@@ -94,7 +92,7 @@ dataproc_temp_bucket_force_destroy                     = true
 
 # Cloud Composer Configuration
 composer_env_name              = "dzacmp2023" // TODO
-composer_region                = "us-central1"       // TODO
+composer_region                = "us-central1"
 compose_image_version          = "composer-2-airflow-2"
 composer_service_account_email = "aditya@dtc-de-zoomcamp-2023.iam.gserviceaccount.com" // TODO
 composer_environment_size      = "ENVIRONMENT_SIZE_SMALL"

@@ -6,10 +6,6 @@ variable "project_id" {
   type = string
 }
 
-variable "project_number" {
-  type = string
-}
-
 variable "composer_env_name" {
   description = "Cloud Composer environment name"
   type        = string

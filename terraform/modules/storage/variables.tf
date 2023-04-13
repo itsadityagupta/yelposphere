@@ -37,11 +37,6 @@ variable "datalake_force_destroy" {
   type        = bool
 }
 
-variable "datalake_copy_data_from_bucket" {
-  description = "Bucket name to copy data from"
-  type        = string
-}
-
 variable "ingest_business_data_script_path" {
   description = "Path to the ingest_businesses_data script"
   type        = string

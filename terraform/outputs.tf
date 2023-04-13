@@ -50,7 +50,3 @@ output "ingest_tips_data_script_uri" {
 output "ingest_users_data_uri" {
   value = module.storage.ingest_users_data_uri
 }
-
-output "airflow_dags_folder_path" {
-  value = module.composer.airflow_dags_folder_path
-}
