@@ -6,3 +6,4 @@ terraform/*.backup
 dbt/target/
 dbt/dbt_packages/
 dbt/logs/
+airflow_variables.json
