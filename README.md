@@ -10,15 +10,11 @@ Cloud Composer, Cloud Run and Cloud Build** for data processing.
 
 It performs the following tasks:
 
-* Loads the Yelp data from the repo to the GCS bucket.
-    
-* Cleans preprocess and ingest data from GCS to BigQuery using Dataproc.
-    
-* Uses DBT to normalize the data and performs exploratory data analysis (EDA) to identify trends and insights.
-    
-* Visualizes the results using Google Data Studio.
-    
-* Orchestrates different tasks using Cloud Composer.
+* Loads the Yelp data into the **GCS** bucket.
+* Cleans preprocess and ingest data from GCS to **BigQuery** using **Dataproc**.
+* Uses **DBT** to normalize the data and performs exploratory data analysis (EDA) to identify trends and insights.
+* Visualizes the results using **Google Data Studio**.
+* Orchestrates different tasks using **Cloud Composer**.
 
 # Data Source
 
@@ -64,27 +60,22 @@ Here's a complete overview of the pipeline:
 
 When an airflow DAG starts:
 
+* It copies the data from a public GCS bucket into the project's data lake.
 * It will wait for files to come in the GCS bucket's `data/raw` folder.
-    
 * Once the files are received, it submits Dataproc jobs to the cluster to ingest data into BigQuery raw tables.
-    
 * Once the data is ingested into raw tables, it will send a GET request to Cloud Run which will execute DBT jobs.
-    
 * DBT will perform transformations and load the data into a final dataset, making it ready for visualization.
-    
 
 This final dataset acts as a source for Google Data Studio which creates a dashboard using it. On the other hand:
 
-* When commits are pushed to the main branch of the repo, a new Cloud Build is triggered.
-    
+* When commits are pushed to the main branch of the repo, a new Cloud Build is triggered. 
 * This creates a new docker image that gets deployed on Cloud Run.
-    
 
 This ensures that DBT commands perform up-to-date transformations.
 
-> **Note**: Cloud Build and Cloud Run and used to dockerize the DBT project and run DBT commands. This is required because Airflow does not have any convenient operators to run DBT core commands. And scheduling DBT cloud jobs is not supported in the FREE plan of DBT.
+> **Note**: Cloud Build and Cloud Run are used to dockerize the DBT project and run DBT commands. This is required because Airflow does not have any convenient operators to run DBT core commands. And scheduling DBT cloud jobs is not supported in the FREE plan of DBT.
 > 
-> _In short, it is a workaround to orchestrate DBT._
+> _In short, it is a workaround to orchestrate DBT with Cloud Composer._
 
 # Prerequisites
 
@@ -110,13 +101,9 @@ Here's a screenshot of my dashboard in case you're having any trouble viewing it
 Here are a few things that I think can be improved:
 
 * Better code structure for Terraform.
-    
 * More data transformations on DBT.
-    
 * Adding more data quality tests on DBT models.
-    
 * Research about any easier way to orchestrate DBT with Airflow (although I did a LOT of research and asked a lot of different communities about this)
-
 * CI/CD pipeline.
 
 # Conclusion
