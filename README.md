@@ -2,7 +2,11 @@
 
 ![](imgs/yelp-banner.png)
 
-YelpoSphere is a data pipeline that *extracts, transforms, and loads* data from Yelp's public dataset into a GCP environment and performs various analyses on the data. The pipeline combines **GCS, BigQuery, Dataproc, Cloud Composer, Cloud Run and Cloud Build** for data processing.
+YelpoSphere is a data pipeline that *extracts, transforms, and loads* data from Yelp's public dataset into a
+GCP environment and performs various analyses on the data. The pipeline combines **GCS, BigQuery, Dataproc,
+Cloud Composer, Cloud Run and Cloud Build** for data processing.
+
+**YelpoSphere helps users provides insights into the restaurants business.**
 
 It performs the following tasks:
 
