@@ -134,6 +134,12 @@ with models.DAG(
         default_args=default_args,  # The interval with which to schedule the DAG
         schedule_interval=datetime.timedelta(days=10),  # Override to match your needs
 ) as dag:
+    
+    get_data = bash.BashOperator(
+        task_id="get_data_to_datalake",
+        bash_command=f"gsutil -m cp gs://gcs_capstone_dezoomcamp/* {DATALAKE_URL}/data/raw"
+    )
+
     business_data_exists = GCSObjectExistenceSensor(
         task_id="if_business_data_exists",
         bucket=DATALAKE,
@@ -244,6 +250,14 @@ with models.DAG(
         bash_command=f'curl -H "Authorization: Bearer $(gcloud auth print-identity-token --audiences={cloud_run_app_url})" {cloud_run_app_url}'
         # The end point of the deployed Cloud Run container for DBT job
     )
+
+    get_data >> [
+        business_data_exists, 
+        checkin_data_exists, 
+        reviews_data_exists, 
+        tips_data_exists, 
+        users_data_exists
+        ]
 
     business_data_exists >> ingest_business_data_job_submit >> delete_business_data_file
     checkin_data_exists >> ingest_checkin_data_job_submit >> delete_checkin_data_file
