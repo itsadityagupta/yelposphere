@@ -23,34 +23,22 @@ The dataset is taken from the [Official Yelp Open Dataset](https://www.yelp.com/
 Here's a list of files available:
 
 * `business.json`: Contains business data including location data, attributes, and categories.
-    
 * `reviews.json`: Contains full review text data including the user\_id that wrote the review and the business\_id the review is written for.
-    
 * `user.json`: User data including the user's friend mapping and all the metadata associated with the user.
-    
 * `checkin.json`: Checkins on a business.
-    
 * `tip.json`: Tips are written by a user of a business. Tips are shorter than reviews and tend to convey quick suggestions.
-    
 
 For a detailed description of the schema and examples, please visit the [official documentation](https://www.yelp.com/dataset/documentation/main) website.
 
 # Tech Stack
 
 * **Data Storage:** Google Cloud Storage (GCS)
-    
 * **Data Processing:** Dataproc
-    
 * **Data Transformations:** Data Build Tool (DBT)
-    
 * **Workflow Orchestration:** Cloud Composer
-    
 * **Infrastructure:** Terraform
-    
 * **Programming Language:** Python
-    
 * **Extras:** Cloud Build, Cloud Run
-    
 
 # Pipeline Overview
 
