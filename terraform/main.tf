@@ -15,6 +15,10 @@ provider "google" {
   // credentials = file(var.credentials)  # Use this if you do not want to set env-var GOOGLE_APPLICATION_CREDENTIALS
 }
 
+module "apis" {
+  source = "./modules/apis"
+}
+
 module "storage" {
   source = "./modules/storage"
 
@@ -32,6 +36,10 @@ module "storage" {
   ingest_reviews_data_script_path  = var.ingest_reviews_data_script_path
   ingest_tips_data_script_path     = var.ingest_tips_data_script_path
   ingest_users_data_script_path    = var.ingest_users_data_script_path
+
+  depends_on = [
+    module.apis
+  ]
 }
 
 module "bigquery" {
@@ -81,6 +89,10 @@ module "bigquery" {
   bigquery_staging_users_table_description         = var.bigquery_staging_users_table_description
   bigquery_staging_users_table_deletion_protection = var.bigquery_staging_users_table_deletion_protection
   bigquery_staging_users_table_schema_filepath     = var.bigquery_staging_users_table_schema_filepath
+
+  depends_on = [
+    module.apis
+  ]
 }
 
 module "dataproc" {
@@ -121,6 +133,9 @@ module "dataproc" {
   dataproc_temp_bucket_lifecycle_rule_condition_age_days = var.dataproc_temp_bucket_lifecycle_rule_condition_age_days
   dataproc_temp_bucket_force_destroy                     = var.dataproc_temp_bucket_force_destroy
 
+  depends_on = [
+    module.apis
+  ]
 }
 
 module "composer" {
@@ -152,4 +167,8 @@ module "composer" {
   worker_storage_gb = var.worker_storage_gb
   worker_min_count  = var.worker_min_count
   worker_max_count  = var.worker_max_count
+
+  depends_on = [
+    module.apis
+  ]
 }
