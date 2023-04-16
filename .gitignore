@@ -7,3 +7,4 @@ dbt/target/
 dbt/dbt_packages/
 dbt/logs/
 airflow_variables.json
+tf_output.json
