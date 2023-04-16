@@ -97,6 +97,6 @@ Here are a few things that I think can be improved:
 
 # Conclusion
 
-This was my capstone project for the Data Engineering Zoomcamp.
+This was my capstone project for the [Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp).
 
 I hope you like it. If you have any questions about the project, face any problems while following along or have a suggestion for me, feel free to comment or drop me a DM on [Twitter](https://twitter.com/itsadityagupta) or [Linkedin](https://www.linkedin.com/in/itsadityagupta/).
