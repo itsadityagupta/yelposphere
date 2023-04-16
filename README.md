@@ -38,6 +38,7 @@ For a detailed description of the schema and examples, please visit the [officia
 * **Workflow Orchestration:** Cloud Composer
 * **Infrastructure:** Terraform
 * **Programming Language:** Python
+* **Data Visualization:** Google Data Studio
 * **Extras:** Cloud Build, Cloud Run
 
 # Pipeline Overview
