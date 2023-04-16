@@ -73,7 +73,8 @@ This ensures that DBT commands perform up-to-date transformations.
 
 # Setting up the pipeline
 
-I've written a detailed blog on Hashnode with steps to recreate this pipeline. You can visit the blog here and follow the steps.
+I've written a detailed blog with steps to recreate this pipeline. You can visit the blog [here](https://itsadityagupta.hashnode.dev/how-to-setup-yelposhere-pipeline-on-gcp) 
+and follow the steps.
 
 # Dashboard
 
